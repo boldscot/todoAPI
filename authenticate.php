@@ -8,7 +8,6 @@ include 'connection.php';
 		$em = strtolower($email);
 		// query db for an entry with the same email
 		$hash= crypt($password, '$5$rounnds=5000$testSalt$'); 
-
 		$result =array();
 		$stmt = "SELECT * FROM users WHERE email='$em' AND password='$hash'";
 		$data = $conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
@@ -24,6 +23,7 @@ include 'connection.php';
 			echo json_encode('Email/password combo invalid');
 			return false;
 		}
+		
 		//close the connection to the database
 		mysqli_close($conn);
 	}	

@@ -34,12 +34,12 @@ include 'authenticate.php';
 						echo json_encode('Bad password, mustbe <= 20 & > 8 chars and contain letters and at least one number');
 						return;
 					} 
-					
+
 					//close the connection to the database
 					mysqli_close($conn);
 				}
 			}
-		} else echo 'No username/password param(s) provided, use ?email=x&password=x in url';
+		} else echo json_encode('No username/password param(s) provided, use ?email=x&password=x in url');
 
 	}
 
