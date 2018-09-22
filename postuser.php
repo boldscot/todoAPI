@@ -24,12 +24,7 @@ include 'connection.php';
 			if (ctype_alnum($password) && strlen($password) <= 20 && strlen($password) > 8) {
     			echo json_encode('Good password');
     			// ENCRYPT PW HERE
-    			if (CRYPT_SHA256 == 1) {
-    				$_POST['password'] = $hash = crypt($password, '$5$rounnds=5000$testSalt$');
-    			} else {
-    				json_encode('SHA256 not supported');
-    				return;
-    			}
+    			$_POST['password'] = $hash = crypt($password, '$5$rounnds=5000$testSalt$');
 			} else {
 				echo json_encode('Bad password, mustbe <= 20 & > 8 chars and contain letters and at least one number');
 				return;

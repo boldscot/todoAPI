@@ -10,7 +10,7 @@
 		// attempt server connection
 		$connection = new mysqli(SERVER, USER, PASSWORD, DATABASE);
 
-		// check server connection status
+		// check server connection status, return the connection if established
 		if($connection->connect_error) 
 			die ("No Server connection " . $connection->connect_error);
 		else return $connection;

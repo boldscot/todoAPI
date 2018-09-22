@@ -24,7 +24,7 @@ include 'connection.php';
 			echo json_encode('Email/password combo invalid');
 			return false;
 		}
-		//close the connection to the datbase
+		//close the connection to the database
 		mysqli_close($conn);
 	}	
 
