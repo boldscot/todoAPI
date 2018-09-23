@@ -12,7 +12,37 @@ include 'authenticate.php';
 				$row = mysqli_fetch_row($data);
 				//users id
 				$id = $row[0];
+
 				$stmt = "SELECT * FROM task WHERE ownerID='$id'";
+
+				if (!empty($_GET['filterType'])) {
+					$type= strtolower($_GET['filterType']);
+
+					if ($type != 'home' && $type != 'work') {
+						echo json_encode("Task type should be home or work");
+						return;
+					} else {
+						// Add type condition to statement
+						$stmt = $stmt."AND type='$type'";
+					}
+				} 
+
+				if (!empty($_GET['filterStatus'])) {
+					$status= strtolower($_GET['filterStatus']);
+
+					if ($status != 'todo' && $status != 'doing' && $status != 'done') {
+						echo json_encode("Task status should be todo,doing or done");
+						return;
+					} else {
+						// Add status condition to statement
+						$stmt = $stmt."AND status='$status'";
+					}
+				}
+
+
+
+
+				
 				$data = $conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
 
 				$result= array();

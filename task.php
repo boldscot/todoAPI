@@ -23,7 +23,7 @@ function CreateTask() {
 					return;
 				} 
 
-				// validate status
+				// validate type
 				$type= strtolower($type);
 				if ($type != 'home' && $type != 'work') {
 					echo json_encode("Task type should be home or work");
@@ -48,9 +48,9 @@ function CreateTask() {
 				echo json_encode('Task created');
 				//close the connection to the database
 				mysqli_close($conn);
-			}
+			}else echo json_encode('No name/type/priority param(s) provided, use ?name=x&type=x&priority=x in url');
 		}
-	} else echo json_encode('No username/password param(s) provided, use ?email=x&password=x in url');	
+	} else echo json_encode('No email/password param(s) provided, use ?email=x&password=x in url');	
 
 }
 
