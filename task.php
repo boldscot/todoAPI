@@ -35,15 +35,19 @@ function CreateTask() {
 				$stmt = "SELECT ID FROM users WHERE email='$_GET[email]'";
 				$data = $conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
 				$row = mysqli_fetch_row($data);
-				//set id 
+				//set id to the id of the owner
 				$_POST['id'] = $row[0];
+				// tasks always start as todo
 				$_POST['status']= 'todo';
 
-				// Creat the insert statement tadd task entry
+				// Creat the insert statement to add task entry
 				$stmt="INSERT INTO task (ownerID,priority,type,status,name) VALUES ".
 					"('$_POST[id]','$_POST[priority]','$_POST[type]', '$_POST[status]', '$_POST[name]')";
 
 				$conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
+
+				//close the connection to the database
+				mysqli_close($conn);
 			}
 		}
 	} else echo json_encode('No username/password param(s) provided, use ?email=x&password=x in url');	
