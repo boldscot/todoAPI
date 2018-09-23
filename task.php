@@ -7,14 +7,14 @@ function CreateTask() {
 		// check if valid email and pw
 		if (Authenticate($_GET['email'], $_GET['password'])) {
 			// check if valid fields are present for task creation
-			if (!empty($_GET['taskName']) && !empty($_GET['taskType']) && !empty($_GET['taskPriority'])) {
-				// 
-				$name=  $_GET['taskname'];
-				$type = $_GET['taskType'];
-				$priority = $_GET['priority'];
+			if (!empty($_GET['name']) && !empty($_GET['type']) && !empty($_GET['priority'])) {
+				// store keys 
+				$_POST['name'] = $name=  $_GET['name'];
+				$_POST['type'] = $type = $_GET['type'];
+				$_POST['priority'] = $priority = $_GET['priority'];
 
 				// priority will be between 1 and 10
-				if ($priority > 10) $priority = 10
+				if ($priority > 10) $priority = 10;
 				if ($priority < 1) $priority = 1;
 
 				//validate name
@@ -25,11 +25,25 @@ function CreateTask() {
 
 				// validate status
 				$type= strtolower($type);
-				if ($type != 'home' || $type != 'work') {
+				if ($type != 'home' && $type != 'work') {
 					echo json_encode("Task type should be home or work");
 					return;
 				}
 
+				// get the id of the user creating the task
+				$conn = GetConnection();
+				$stmt = "SELECT ID FROM users WHERE email='$_GET[email]'";
+				$data = $conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
+				$row = mysqli_fetch_row($data);
+				//set id 
+				$_POST['id'] = $row[0];
+				$_POST['status']= 'todo';
+
+				// Creat the insert statement tadd task entry
+				$stmt="INSERT INTO task (ownerID,priority,type,status,name) VALUES ".
+					"('$_POST[id]','$_POST[priority]','$_POST[type]', '$_POST[status]', '$_POST[name]')";
+
+				$conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
 			}
 		}
 	} else echo json_encode('No username/password param(s) provided, use ?email=x&password=x in url');	
