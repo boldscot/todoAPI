@@ -15,6 +15,7 @@ include 'authenticate.php';
 				$stmt = "SELECT * FROM task WHERE ownerID='$id'";
 				$data = $conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
 
+				$result= array();
 				while ($row = $data->fetch_array(MYSQL_ASSOC)) {
 					$result[] = $row;
 				}
@@ -23,9 +24,13 @@ include 'authenticate.php';
 				if (count($result) > 0) {	
 					echo json_encode($result);
 				} else {
-					echo json_encode('You haver no tasks');
+					echo json_encode('You have no tasks');
 					return false;
-				} 
+				}
+
+
+				//close the connection to the database
+				mysqli_close($conn); 
 			}
 		} else echo json_encode('No username/password param(s) provided, use ?email=x&password=x in url');
 	}

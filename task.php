@@ -14,8 +14,8 @@ function CreateTask() {
 				$_POST['priority'] = $priority = $_GET['priority'];
 
 				// priority will be between 1 and 10
-				if ($priority > 10) $priority = 10;
-				if ($priority < 1) $priority = 1;
+				if ($priority > 10) $_POST['priority'] = 10;
+				if ($priority < 1) $_POST['priority'] = 1;
 
 				//validate name
 				if (strlen($name) > 100 || strlen($name) < 5) {
