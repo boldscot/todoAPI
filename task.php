@@ -45,7 +45,7 @@ function CreateTask() {
 					"('$_POST[id]','$_POST[priority]','$_POST[type]', '$_POST[status]', '$_POST[name]')";
 
 				$conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
-
+				echo json_encode('Task created');
 				//close the connection to the database
 				mysqli_close($conn);
 			}
