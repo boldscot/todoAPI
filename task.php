@@ -1,4 +1,10 @@
 <?php
+/**
+ * todoAPI
+ * @author Stephen Collins
+ * @Version 1.0
+ */
+ 
 include 'authenticate.php';
 
 function CreateTask() {
@@ -55,11 +61,4 @@ function CreateTask() {
 }
 
 CreateTask();
-
-
-/*
-
-CREATE TABLE `todoapi`.`TASK` ( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT ,  `ownerID` INT UNSIGNED NOT NULL ,  `priority` TINYINT UNSIGNED NOT NULL ,  `type` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,  `status` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,  `name` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,    PRIMARY KEY  (`ID`)) ENGINE = MyISAM;
-*/
-
 ?>

@@ -1,4 +1,10 @@
 <?php
+/**
+ * todoAPI
+ * @author Stephen Collins
+ * @Version 1.0
+ */
+ 
 include 'authenticate.php';
 
 	function UpdateUser() {
@@ -34,10 +40,12 @@ include 'authenticate.php';
 						echo json_encode('Bad password, mustbe <= 20 & > 8 chars and contain letters and at least one number');
 						return;
 					} 
-
 					//close the connection to the database
 					mysqli_close($conn);
+					return;
 				}
+				// no params to update were provided
+				echo json_encode('Use username/changePassword as keys to update the username or password');
 			}
 		} else echo json_encode('No username/password param(s) provided, use ?email=x&password=x in url');
 

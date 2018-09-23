@@ -1,0 +1,12 @@
+Create a database called todoapi and use thses sql querys to create the tables required for the apis persistence.
+
+------------------------------------------------------------------------------------------------------------------------------
+User table
+
+CREATE TABLE `todoapi`.`users` ( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT , `email` VARCHAR(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , `Firstname` VARCHAR(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , `Lastname` VARCHAR(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , `Password` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , PRIMARY KEY (`ID`), UNIQUE (`email`)) ENGINE = MyISAM;
+
+------------------------------------------------------------------------------------------------------------------------------
+TASK TABLE
+
+CREATE TABLE `todoapi`.`TASK` ( `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT ,  `ownerID` INT UNSIGNED NOT NULL ,  `priority` TINYINT UNSIGNED NOT NULL ,  `type` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,  `status` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,  `name` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,    PRIMARY KEY  (`ID`)) ENGINE = MyISAM;
+ 

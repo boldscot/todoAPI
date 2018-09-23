@@ -1,4 +1,10 @@
 <?php
+/**
+ * todoAPI
+ * @author Stephen Collins
+ * @Version 1.0
+ */
+ 
 include 'authenticate.php';
 
 	function DeleteTask() {
@@ -15,12 +21,9 @@ include 'authenticate.php';
 					$id = $row[0];
 					$stmt = "DELETE FROM task WHERE ownerID=$id AND name= '$_GET[name]'";
 					$result = $conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
-				} else echo json_encode('Get ID and task name from task list, getUsersTasks.php');
+				} else echo json_encode('Get id and task name from task list, getUsersTasks.php');
 			} 
-			
-		} else echo json_encode('No username/password param(s) provided, use ?email=x&password=x in url');
+		} else echo json_encode('No email/password param(s) provided, use ?email=x&password=x in url');
 	}
-
 	DeleteTask();
-
 ?> 

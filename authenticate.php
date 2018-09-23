@@ -1,4 +1,10 @@
 <?php
+/**
+ * todoAPI
+ * @author Stephen Collins
+ * @Version 1.0
+ */
+ 
 include 'connection.php';
 
 	function Authenticate($email, $password) {

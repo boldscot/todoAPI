@@ -1,4 +1,10 @@
 <?php
+/**
+ * todoAPI
+ * @author Stephen Collins
+ * @Version 1.0
+ */
+ 
 include 'authenticate.php';
 
 function UpdateTask() {
@@ -6,6 +12,11 @@ function UpdateTask() {
 	if (!empty($_GET['email']) && !empty($_GET['password']) && !empty($_GET['taskID']) ) {
 		// check if valid email and pw
 		if (Authenticate($_GET['email'], $_GET['password'])) {
+			if (empty($_GET['priority']) && empty($_GET['status'])) {
+				echo json_encode('Need to provide priority/status params');
+				return;
+			}
+
 			// get the id of the user updating the task
 			$conn = GetConnection();
 			$stmt = "SELECT ID FROM users WHERE email='$_GET[email]'";
@@ -39,9 +50,11 @@ function UpdateTask() {
 					$conn->query($stmt) or die('Query failed: ' . mysqli_error($conn));
 				}
 			}
+
+			//close the connection to the database
+			mysqli_close($conn);
 		}
 	} else echo json_encode('No username/password/id param(s) provided, use ?email=x&password=x&taskID=x in url');
-
 
 }
 

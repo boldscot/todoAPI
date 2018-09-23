@@ -1,4 +1,10 @@
 <?php 
+/**
+ * todoAPI
+ * @author Stephen Collins
+ * @Version 1.0
+ */
+ 
 include 'connection.php';
 	
 	// Function that posts a user to a database

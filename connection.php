@@ -1,4 +1,9 @@
 <?php
+/**
+ * todoAPI
+ * @author Stephen Collins
+ * @Version 1.0
+ */
 
 	// Define global constants for database connection 
 	define("DATABASE", "todoapi", true);
